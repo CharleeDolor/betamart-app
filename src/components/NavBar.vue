@@ -11,14 +11,20 @@
 <script>
 import axios from '@/lib/axios';
 export default {
+    computed: {
+        getAccountDetails(){
+            return this.$store.getters.getAccountDetails;
+        }
+    },
     methods: {
         async logout() {
             try {
                 const response = await axios.post('/api/logout', {
-                    email: "dolorcharlee55@gmail.com"
+                    email: this.getAccountDetails.email
                 });
                 if (response.status == 200) {
-                    localStorage.removeItem('token')
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('vuex');
                     this.$store.dispatch('asyncLoadAccountDetails', []);
                     this.$router.push('/');
                 }

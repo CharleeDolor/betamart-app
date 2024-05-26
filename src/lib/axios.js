@@ -15,7 +15,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(null, (err) => {
     switch (err.response?.status) {
         case 401:
-            alert('Missing Credentials')
+            alert('Missing correct credentials')
             break;
 
         case 500:
