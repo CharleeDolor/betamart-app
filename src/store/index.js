@@ -7,10 +7,22 @@ export default createStore({
     
   },
   getters: {
+    getAccountDetails(state){
+      return state.accountDetails;
+    },
   },
   mutations: {
+    loadAccountDetails(state, payload){
+      state.accountDetails = payload
+    },
+
   },
   actions: {
+    asyncLoadAccountDetails(context, payload){
+      setTimeout(() => {
+        context.commit('loadAccountDetails', payload);
+      });
+    }
   },
   modules: {
   }
