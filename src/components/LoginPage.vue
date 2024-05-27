@@ -6,7 +6,7 @@
       <!-- Wrapper -->
       <div class="wrapper">
         <div class="logo">
-          <img src="https://i.pinimg.com/originals/b7/d6/8c/b7d68cdf1b8af238860fba71514eda5a.gif" alt="">
+          <img :src="require('@/assets/logo-ecommerce.png')" alt="E-commerce Logo" class="imglog">
         </div>
         <div class="text-center mt-4 name">
           Login

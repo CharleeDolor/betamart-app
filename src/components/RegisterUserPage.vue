@@ -3,7 +3,7 @@
     <div class="background-image"></div>
     <div class="wrapper">
       <div class="logo">
-        <img src="https://assets.materialup.com/uploads/6102cce0-dc3c-42a3-ba0e-84d25f8a7cd3/preview.gif" alt="">
+        <img :src="require('@/assets/logo-ecommerce.png')" alt="E-commerce Logo" class="imglog">
       </div>
       <div class="text-center mt-4 name">
         User Registration
