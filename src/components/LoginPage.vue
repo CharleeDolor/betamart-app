@@ -33,6 +33,7 @@
 
 <script>
 import axios from 'axios';
+/*import axios from "@/lib/axios";*/
 
 export default {
   data() {
