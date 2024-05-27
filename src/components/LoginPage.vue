@@ -14,7 +14,7 @@
         <form @submit.prevent="login" class="p-3 mt-3">
           <div class="form-field d-flex align-items-center mb-3">
             <span class="far fa-user"></span>
-            <input type="text" name="userName" v-model="email" class="form-control" placeholder="Username" required>
+            <input type="text" name="email" v-model="email" class="form-control" placeholder="Email" required>
           </div>
           <div class="form-field d-flex align-items-center mb-3">
             <span class="fas fa-key"></span>
@@ -32,8 +32,7 @@
 
 
 <script>
-import axios from 'axios';
-/*import axios from "@/lib/axios";*/
+import axios from "@/lib/axios";
 
 export default {
   data() {
