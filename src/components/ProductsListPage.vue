@@ -1,35 +1,47 @@
 <template>
     <NavBar></NavBar>
-    <h1>Welcome {{ this.getAccountDetails.name }}</h1>
-    <h1>Products</h1>
-    <router-link to="/add">Add Product</router-link>
-    <table>
-        <thead>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stocks</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-            <tr v-for="product in this.getProducts" :key="product.name">
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.stocks }}</td>
-                <td>
-                    <div>
-                        <button @click="gotoEdit(product.id)">Edit</button>
+    <div class="container-lg d-flex flex-column">
+        <h1>Welcome {{ this.getAccountDetails.name }}</h1>
+        <h1>Products</h1>
 
-                        <form @submit.prevent="deleteProduct(product)" method="POST">
-                            <button type="submit"
-                                onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <div v-if="getProducts.length < 1">
+            <h3>Seems empty here!</h3>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center flex-column" v-else>
+            <div class="m-2">
+                <router-link to="/add" class="btn btn-primary">Add Product</router-link>
+            </div>
+            <table class="table table-hover table-bordered">
+                <thead class="">
+                    <th class="p-2">Name</th>
+                    <th class="p-2">Description</th>
+                    <th class="p-2">Price</th>
+                    <th class="p-2">Stocks</th>
+                    <th class="p-2">Action</th>
+                </thead>
+                <tbody class="">
+                    <tr v-for="product in this.getProducts" :key="product.name">
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.stocks }}</td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button @click="gotoEdit(product.id)" class="m-2 btn btn-warning">Edit</button>
+                                <form @submit.prevent="deleteProduct(product)" method="POST">
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
     <router-view />
 </template>
 
@@ -73,20 +85,20 @@ export default {
             });
         },
 
-        async deleteProduct(product){
+        async deleteProduct(product) {
             try {
                 const response = await axios.delete('/api/products/delete/' + product.id);
-                if(response.status == 200){
+                if (response.status == 200) {
                     // assign product as payload for deletion in products list
                     let payload = product;
                     this.$store.dispatch('asyncDeleteProduct', payload);
-                    
+
                     alert("Product " + product.name + " is deleted");
                 }
             } catch (error) {
                 console.log(error)
             }
-            
+
 
         }
     }
