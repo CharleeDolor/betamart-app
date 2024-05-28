@@ -1,19 +1,42 @@
 <template>
+    <NavBar></NavBar>
     <h1>Edit Product</h1>
     <form @submit.prevent="updateProduct">
-        <input type="text" name="name" v-model="name" placeholder="Name" id="">
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" v-model="description" cols="30" rows="10"></textarea>
-        <input type="number" step="0.01" name="price" v-model="price" placeholder="Price" />
-        <input type="number" name="stocks" v-model="stocks" placeholder="Stocks">
-        <button type="submit">Edit</button>
-        <router-link to="/home">Cancel</router-link>
+        <div class="d-flex flex-column container">
+            <div class="form-group mb-2">
+                <input type="text" class="form-control form-control-lg" name="name" v-model="name" placeholder="Name" id="">
+            </div>
+            
+            <div class="form-group mb-2">
+                <label for="description">Description:</label>
+                <textarea class="form-control form-control-lg" name="description" id="description" v-model="description" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="form-group mb-2">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="price" v-model="price" placeholder="Price" />
+            </div>
+
+            <div class="form-group mb-2">
+                <input type="number" class="form-control form-control-lg" name="stocks" v-model="stocks" placeholder="Stocks">
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn btn-success m-2">Edit</button>
+                <router-link to="/home" class="btn btn-secondary">Cancel</router-link>
+            </div>
+            
+        </div>
+
     </form>
 </template>
 
 <script>
 import axios from '@/lib/axios';
+import NavBar from '@/components/NavBar.vue'
 export default {
+    components: {
+        NavBar
+    },
     data() {
         return {
             name: '',
@@ -55,11 +78,15 @@ export default {
                 }
 
                 // check if product name already exists
+                let count = 0;
                 for (let i = 0; i < this.$store.getters.getProducts.length; i++) {
                     if (this.$store.getters.getProducts[i].name.toLowerCase() == payload.name.toLowerCase()) {
-                        throw "Product name already exists";
-                        
+                        count++;
                     }
+                }
+
+                if (count > 1) {
+                    throw "Product name already exists";
                 }
 
                 const response = await axios.put('/api/products/update/' + this.$route.params.id, {
