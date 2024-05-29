@@ -47,6 +47,7 @@
     components: {
       NavBar
     },
+
     data() {
       return {
         name: '',
@@ -55,6 +56,7 @@
         stocks: 0
       };
     },
+
     methods: {
       async addProduct() {
         try {
@@ -79,7 +81,8 @@
   
             this.$router.push('/home');
           }
-        } catch (error) {
+        } 
+		catch (error) {
           alert(error);
         }
       }
