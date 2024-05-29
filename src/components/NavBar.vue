@@ -36,8 +36,8 @@ export default {
                 });
                 if (response.status == 200) {
                     localStorage.removeItem('token');
-                    localStorage.removeItem('vuex');
                     this.$store.dispatch('asyncLoadAccountDetails', []);
+                    this.$store.dispatch('asyncLoadProducts', []);
                     this.$router.push('/');
                 }
             } catch (error) {

@@ -19,6 +19,7 @@
               <span class="fas fa-info-circle"></span>
               <textarea class="form-control" v-model="description" id="description" rows="3" placeholder="Description" required></textarea>
             </div>
+<<<<<<< HEAD
   
             <div class="form-field d-flex align-items-center mb-3">
               <span class="fas fa-dollar-sign"></span>
@@ -28,6 +29,19 @@
             <div class="form-field d-flex align-items-center mb-3">
               <span class="fas fa-boxes"></span>
               <input type="number" class="form-control" v-model="stocks" placeholder="Stocks" required>
+=======
+
+            <div class="form-group mb-2">
+                <label for="price">Price</label>
+                <input type="number" class="form-control form-control-lg" step="0.01" v-model="price"
+                    placeholder="Price" />
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="price">Stocks</label>
+                <input type="number" class="form-control form-control-lg" name="stocks" v-model="stocks"
+                    placeholder="Stocks">
+>>>>>>> 4ae7ab61fa2acb0864ab9dfde7375f5de9aee845
             </div>
   
             <div class="d-flex align-items-center justify-content-center">
