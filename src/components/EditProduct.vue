@@ -3,21 +3,24 @@
     <h1>Edit Product</h1>
     <form @submit.prevent="updateProduct">
         <div class="d-flex flex-column container">
+            <label for="name">Name</label>
             <div class="form-group mb-2">
-                <input type="text" class="form-control form-control-lg" name="name" v-model="name" placeholder="Name" id="">
+                <input type="text" class="form-control form-control-lg" name="name" v-model="name" placeholder="Name" id="name">
             </div>
             
             <div class="form-group mb-2">
-                <label for="description">Description:</label>
+                <label for="description">Description</label>
                 <textarea class="form-control form-control-lg" name="description" id="description" v-model="description" cols="30" rows="10"></textarea>
             </div>
 
             <div class="form-group mb-2">
-                <input type="number" step="0.01" class="form-control form-control-lg" name="price" v-model="price" placeholder="Price" />
+                <label for="price">Price</label>
+                <input type="number" step="0.01" class="form-control form-control-lg" name="price" v-model="price" placeholder="Price" id="price" />
             </div>
 
             <div class="form-group mb-2">
-                <input type="number" class="form-control form-control-lg" name="stocks" v-model="stocks" placeholder="Stocks">
+                <label for="stocks">Stocks</label>
+                <input type="number" class="form-control form-control-lg" name="stocks" v-model="stocks" placeholder="Stocks" id="stocks">
             </div>
 
             <div class="d-flex align-items-center justify-content-center">

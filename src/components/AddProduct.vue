@@ -17,13 +17,13 @@
             </div>
 
             <div class="form-group mb-2">
-                <label for="price">Description</label>
+                <label for="price">Price</label>
                 <input type="number" class="form-control form-control-lg" step="0.01" v-model="price"
                     placeholder="Price" />
             </div>
 
             <div class="form-group mb-2">
-                <label for="price">Description</label>
+                <label for="price">Stocks</label>
                 <input type="number" class="form-control form-control-lg" name="stocks" v-model="stocks"
                     placeholder="Stocks">
             </div>
