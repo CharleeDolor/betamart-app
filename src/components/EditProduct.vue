@@ -33,7 +33,6 @@
                 <button type="submit" class="btn btn-success m-2">Edit</button>
                 <router-link to="/home" class="btn btn-secondary">Cancel</router-link>
               </div>
-  
             </div>
           </form>
         </div>
@@ -126,31 +125,35 @@
     }
   }
   </script>
-  
-  <style scoped>
-  .splitter-container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .background-image {
-    flex: 2;
-    background-image: url('https://cdn.dribbble.com/users/443127/screenshots/11049996/media/65f8cf2ec85940bc6de1b70e80900725.gif');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .wrapper {
-    flex: 1;
-    padding: 40px 30px 30px 30px;
-    background-color: #ecf0f3;
-    border-radius: 15px;
-    box-shadow: 13px 13px 20px #cbced1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  /* Rest of the existing styles */
-  </style>
-  
+<style scoped>
+.splitter-container {
+  display: flex;
+  height: 100vh;
+}
+
+.background-image {
+  flex: 2;
+  background-image: url('https://cdn.dribbble.com/users/443127/screenshots/11049996/media/65f8cf2ec85940bc6de1b70e80900725.gif');
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper {
+  flex: 1;
+  padding: 40px 30px 30px 30px;
+  background-color: #ecf0f3;
+  border-radius: 15px;
+  box-shadow: 13px 13px 20px #cbced1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+textarea {
+  height: 120px; /* Adjust the height as needed */
+  resize: none; /* Prevent resizing by user */
+
+}
+</style>
+
+
