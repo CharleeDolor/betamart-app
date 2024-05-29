@@ -1,17 +1,17 @@
 <template>
     <NavBar></NavBar>
     <div class="container-lg d-flex flex-column">
-        
+        <br>
+        <div class="m-2">
+                <router-link to="/add" class="btn btn-primary">Add Product</router-link>
+            </div>
         <div v-if="getProducts.length < 1">
             <h3>Seems empty here!</h3>
         </div>
-
         <div class="d-flex align-items-center justify-content-center flex-column" v-else>
             <h1>Welcome {{ this.getAccountDetails.name }}</h1>
             <h1>My Products</h1>
-            <div class="m-2">
-                <router-link to="/add" class="btn btn-primary">Add Product</router-link>
-            </div>
+        
             <table class="table table-hover table-bordered">
                 <thead class="">
                     <th class="p-2">Name</th>
