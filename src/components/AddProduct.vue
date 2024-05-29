@@ -98,7 +98,6 @@
     background-image: url('https://cdn.dribbble.com/users/934035/screenshots/2850232/media/cb5df13b3c67c98f9a16df1802686784.gif');
     background-size: cover;
     background-position: center;
-    overflow: hidden;
   }
   
   .wrapper {
