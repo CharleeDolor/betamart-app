@@ -40,55 +40,7 @@
     </div>
   </template>
   
-  <script>
-  import axios from '@/lib/axios';
-  import NavBar from '@/components/NavBar.vue';
-  export default {
-    components: {
-      NavBar
-    },
-
-    data() {
-      return {
-        name: '',
-        description: '',
-        price: 0.00,
-        stocks: 0
-      };
-    },
-
-    methods: {
-      async addProduct() {
-        try {
-          // check if product already exists
-          let products = this.$store.getters.getProducts;
-          for (let i = 0; i < products.length; i++) {
-            if (this.name.toLowerCase() === products[i].name.toLowerCase()) {
-              throw "Product already exists";
-            }
-          }
-          const response = await axios.post('/api/products/store', {
-            name: this.name,
-            description: this.description,
-            stocks: this.stocks,
-            user_id: this.$store.getters.getAccountDetails.id,
-            price: this.price
-          });
-  
-          if (response.status === 201) {
-            this.$store.dispatch('asyncAddProduct', response.data.product);
-            alert('Product created');
-  
-            this.$router.push('/home');
-          }
-        } 
-		catch (error) {
-          alert(error);
-        }
-      }
-    }
-  };
-  </script>
+ 
   
   <style scoped>
   .splitter-container {
