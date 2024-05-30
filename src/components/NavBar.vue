@@ -15,15 +15,39 @@
                     <a class="nav-link" href="/home">Home</a>
                 </li>
             </ul>
-            <button @click="logout" class="btn btn-danger ml-auto custom-logout-button">Logout</button>
+            <button @click="showLogoutDialog = true" class="btn btn-danger ml-auto custom-logout-button">Logout</button>
         </div>
     </nav>
-</template>
 
+    <div v-if="showLogoutDialog" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Logout</h5>
+                   
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to log out?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel btn-secondary" @click="showLogoutDialog = false">Cancel</button>
+                    <button type="button" class="btn-logout btn-danger" @click="logout">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-if="showLogoutDialog" class="modal-backdrop fade show"></div>
+</template>
 
 <script>
 import axios from '@/lib/axios';
+
 export default {
+    data() {
+        return {
+            showLogoutDialog: false
+        };
+    },
     computed: {
         getAccountDetails() {
             return this.$store.getters.getAccountDetails;
@@ -43,6 +67,8 @@ export default {
                 }
             } catch (error) {
                 console.log(error);
+            } finally {
+                this.showLogoutDialog = false;
             }
         }
     }
@@ -53,4 +79,59 @@ export default {
 .btn-link {
     border-color: transparent;
 }
+.modal-backdrop {
+    z-index: 1040;
+}
+.modal {
+    z-index: 1050;
+}
+
+.btn-logout, .btn-cancel {
+    width: 100px; 
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .btn-logout{
+     padding: 10px;
+     border-radius: 15px;
+     box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+     background-color: #ff0000;
+     border: none;
+     color: white;
+     cursor: pointer;
+     border: 1px solid #000000;
+     transition: all 0.3s ease; 
+  }
+  
+  .btn-cancel{
+     padding: 10px;
+     border-radius: 15px;
+     box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+     background-color: #6a6767;
+     border: none;
+     color: white;
+     cursor: pointer;
+     border: 1px solid #000000;
+     transition: all 0.3s ease; 
+ 
+  }
+  
+  .btn-logout:hover {
+    background: linear-gradient(to bottom, #ff0000, white);
+    color: black;
+    border: 1px solid #2e0707;
+    transform: scale(1.02);
+  }
+  
+  .btn-cancel:hover {
+    background: linear-gradient(to bottom, #6a6767, white);
+    color: black;
+    border: 1px solid #1f1e1e;
+    transform: scale(1.02);
+ 
+  }
 </style>

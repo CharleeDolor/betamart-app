@@ -16,7 +16,7 @@
 
         <div class="product-list">
           <div v-for="product in getProducts" :key="product.id" class="product-item">
-            <img :src="require('@/assets/shoespng.png')" alt="Product Image" class="product-image">
+            <img :src="require('@/assets/logo-ecommerce.png')" alt="Product Image" class="product-image">
             <div class="product-details">
               <h2>{{ product.name }}</h2>
               <p>Price: {{ product.price }}</p>
