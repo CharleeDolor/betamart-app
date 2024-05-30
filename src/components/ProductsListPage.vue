@@ -20,14 +20,9 @@
               <p>Price: {{ product.price }}</p>
               <p>Stocks: {{ product.stocks }}</p>
               <div class="product-actions">
-<<<<<<< HEAD
-                <button @click="gotoEdit(product.id)" class="m-2 btn-edit">Edit</button>
-                <button @click="confirmDelete(product)" class="m-2 btn-del">Delete</button>
-=======
                 <button @click="gotoEdit(product.id)" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button>
                 <button @click="deleteProduct(product)" class="btn btn-danger"
                   onclick="return confirm('Are you sure you want to delete this product?')"><i class="fa-solid fa-trash"></i></button>
->>>>>>> 1bbeb14dab0b111e689f94c4ab8fc0423bfe2691
               </div>
             </div>
           </div>
