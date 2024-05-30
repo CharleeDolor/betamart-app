@@ -300,6 +300,18 @@ export default {
     opacity: 0;
   }
 }
+@media (max-width: 768px) {
+  .modal-footer .btn-cancel,
+  .modal-footer .btn-delete {
+    margin-top: 10px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: auto;
+  }
+}
 </style>
 
  
