@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <div class="container-lg d-flex flex-column my-4">
       <div class="m-2">
-        <router-link to="/add" class="btn btn-primary">Add Product</router-link>
+        <router-link to="/add" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i> Add Product</router-link>
       </div>
       <h1 class="text-center">Welcome, {{ getAccountDetails.name }}</h1>
 
