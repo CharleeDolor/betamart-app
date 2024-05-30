@@ -120,6 +120,7 @@ export default {
   align-items: center;
   width: 200px;
   position: relative;
+  overflow: hidden; /* Ensure the image doesn't overflow the container */
 }
 
 .product-image {
@@ -129,6 +130,11 @@ export default {
   object-fit: cover;
   border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
+  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
+}
+
+.product-item:hover .product-image {
+  transform: scale(1.1); /* Zoom in effect */
 }
 
 .product-details {
