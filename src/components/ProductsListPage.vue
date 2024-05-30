@@ -16,18 +16,12 @@
           <div v-for="product in getProducts" :key="product.id" class="product-item">
             <img :src="require('@/assets/logo-ecommerce.png')" alt="Product Image" class="product-image">
             <div class="product-details">
-              <h2>{{ product.name }}</h2><br>
+              <h2>{{ product.name }}</h2>
               <p>Price: {{ product.price }}</p>
               <p>Stocks: {{ product.stocks }}</p>
               <div class="product-actions">
-<<<<<<< HEAD
-                <button @click="gotoEdit(product.id)" class="m-2 btn-edit">Edit</button>
-                <button @click="confirmDelete(product)" class="m-2 btn-del">Delete</button>
-=======
-                <button @click="gotoEdit(product.id)" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button>
-                <button @click="deleteProduct(product)" class="btn btn-danger"
-                  onclick="return confirm('Are you sure you want to delete this product?')"><i class="fa-solid fa-trash"></i></button>
->>>>>>> 1bbeb14dab0b111e689f94c4ab8fc0423bfe2691
+                <button @click="gotoEdit(product.id)" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button>
+                <button @click="confirmDelete(product)" class="btn-del"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -46,7 +40,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn-cancel btn-secondary" @click="showDeleteDialog = false">Cancel</button>
-            <button type="button" class="btn-delete btn-danger" @click="deleteProduct">Delete</button>
+            <button type="button" class="btn-delete btn-danger" @click="deleteProduct(productToDelete)">Delete</button>
           </div>
         </div>
       </div>
@@ -110,18 +104,18 @@ export default {
       this.showDeleteDialog = true;
     },
 
-    async deleteProduct() {
+    async deleteProduct(product) {
       try {
-        const response = await axios.delete('/api/products/delete/' + this.productToDelete.id);
+        const response = await axios.delete('/api/products/delete/' + product.id);
         if (response.status == 200) {
           // Add fade-out animation to the product item
-          this.productToDelete.deleted = true;
+          product.deleted = true;
 
           // assign product as payload for deletion in products list
-          this.$store.dispatch('asyncDeleteProduct', this.productToDelete);
+          this.$store.dispatch('asyncDeleteProduct', product);
 
           setTimeout(() => {
-            alert("Product " + this.productToDelete.name + " is deleted");
+            alert("Product " + product.name + " is deleted");
           }, 500); // Delay alert to allow time for animation
 
           this.showDeleteDialog = false;
@@ -171,6 +165,7 @@ export default {
 }
 .btn-edit {
   padding: 10px;
+  margin-right: 10px; 
   border-radius: 15px;
   box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   background-color: #00b33c;
@@ -188,6 +183,7 @@ export default {
 
 .btn-del {
   padding: 10px;
+  margin-left: 10px;
   border-radius: 15px;
   box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   background-color: #ff0000;
