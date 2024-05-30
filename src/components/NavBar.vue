@@ -15,27 +15,26 @@
                     <a class="nav-link" href="/home">Home</a>
                 </li>
             </ul>
-            <button @click="showLogoutDialog = true" class="btn btn-danger ml-auto custom-logout-button">Logout</button>
+            <button @click="showLogoutDialog = true" class="btn-logout btn-danger ml-auto custom-logout-button">Logout</button>
         </div>
     </nav>
 
     <div v-if="showLogoutDialog" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirm Logout</h5>
-                   
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to log out?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-cancel btn-secondary" @click="showLogoutDialog = false">Cancel</button>
-                    <button type="button" class="btn-logout btn-danger" @click="logout">Confirm</button>
-                </div>
+    <div class="modal-dialog modal-sm d-flex justify-content-center align-items-center" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Logout</h5>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to log out?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel btn-secondary" @click="showLogoutDialog = false">Cancel</button>
+                <button type="button" class="btn-logout btn-danger" @click="logout">Confirm</button>
             </div>
         </div>
     </div>
+</div>
     <div v-if="showLogoutDialog" class="modal-backdrop fade show"></div>
 </template>
 
@@ -79,6 +78,13 @@ export default {
 .btn-link {
     border-color: transparent;
 }
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .modal-backdrop {
     z-index: 1040;
 }
@@ -87,8 +93,8 @@ export default {
 }
 
 .btn-logout, .btn-cancel {
-    width: 100px; 
-    padding: 10px 40px;
+    width: 100px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
