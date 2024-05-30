@@ -103,7 +103,6 @@ export default {
      border: none;
      color: white;
      cursor: pointer;
-     border: 1px solid #000000;
      transition: all 0.3s ease; 
   }
   
@@ -115,7 +114,6 @@ export default {
      border: none;
      color: white;
      cursor: pointer;
-     border: 1px solid #000000;
      transition: all 0.3s ease; 
  
   }
@@ -123,14 +121,12 @@ export default {
   .btn-logout:hover {
     background: linear-gradient(to bottom, #ff0000, white);
     color: black;
-    border: 1px solid #2e0707;
     transform: scale(1.02);
   }
   
   .btn-cancel:hover {
     background: linear-gradient(to bottom, #6a6767, white);
     color: black;
-    border: 1px solid #1f1e1e;
     transform: scale(1.02);
  
   }

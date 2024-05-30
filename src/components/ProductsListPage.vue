@@ -1,80 +1,17 @@
 <template>
   <div>
     <NavBar></NavBar>
-<<<<<<< HEAD
     <div class="container-lg d-flex flex-column my-4">
       <div class="m-2">
         <router-link to="/add" class="btn btn-primary">Add Product</router-link>
       </div>
-      <h1 class="text-center">Welcome, {{ this.getAccountDetails.name }}</h1>
+      <h1 class="text-center">Welcome, {{ getAccountDetails.name }}</h1>
 
       <div v-if="getProducts.length < 1" class="text-center mt-5">
         <h3>Seems empty here!</h3>
       </div>
       <div v-else class="d-flex flex-column align-items-center">
         <h1>My Products</h1>
-        <div class="table-responsive-sm w-100">
-          <table class="table table-hover table-bordered">
-            <thead>
-              <tr>
-                <th class="p-2">Name</th>
-                <th class="p-2">Description</th>
-                <th class="p-2">Price</th>
-                <th class="p-2">Stocks</th>
-                <th class="p-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="product in this.getProducts" :key="product.name" :class="{ 'fade-out': product.deleted }">
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.stocks }}</td>
-                <td>
-                  <div class="d-flex justify-content-center">
-                    <button @click="gotoEdit(product.id)" class="m-2 btn-edit">Edit</button>
-                    <button @click="confirmDelete(product)" class="m-2 btn-del">Delete</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="showDeleteDialog" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
-      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Confirm Delete</h5>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to delete this product?</p>
-          </div>
-          <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn-cancel btn-secondary" @click="showDeleteDialog = false">Cancel</button>
-            <button type="button" class="btn-delete btn-danger" @click="deleteProduct">Delete</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="showDeleteDialog" class="modal-backdrop fade show"></div>
-
-=======
-    <div class="container-lg d-flex flex-column">
-      <br>
-      <div class="m-2">
-        <router-link to="/add" class="btn btn-primary">Add Product</router-link>
-      </div>
-      <h1>Welcome {{ getAccountDetails.name }}</h1>
-
-      <div v-if="getProducts.length < 1">
-        <h3>Seems empty here!</h3>
-      </div>
-      <div class="d-flex align-items-center justify-content-center flex-column" v-else>
-        <h1>My Products</h1>
-
         <div class="product-list">
           <div v-for="product in getProducts" :key="product.id" class="product-item">
             <img :src="require('@/assets/logo-ecommerce.png')" alt="Product Image" class="product-image">
@@ -83,19 +20,33 @@
               <p>Price: {{ product.price }}</p>
               <p>Stocks: {{ product.stocks }}</p>
               <div class="product-actions">
-                <button @click="gotoEdit(product.id)" class="btn btn-warning">Edit</button>
-                <button @click="deleteProduct(product)" class="btn btn-danger"
-                  onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                <button @click="gotoEdit(product.id)" class="m-2 btn-edit">Edit</button>
+                <button @click="confirmDelete(product)" class="m-2 btn-del">Delete</button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
 
->>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
+    <div v-if="showDeleteDialog" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 300px;"> <!-- Adjusted modal size -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirm Delete</h5>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete this product?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel btn-secondary" @click="showDeleteDialog = false">Cancel</button>
+            <button type="button" class="btn-delete btn-danger" @click="deleteProduct">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="showDeleteDialog" class="modal-backdrop fade show"></div>
+
     <router-view />
   </div>
 </template>
@@ -109,7 +60,6 @@ export default {
     NavBar
   },
 
-<<<<<<< HEAD
   data() {
     return {
       showDeleteDialog: false,
@@ -117,8 +67,6 @@ export default {
     };
   },
 
-=======
->>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
   async beforeMount() {
     // load user details
     const accountDetails = await axios.get('/api/user');
@@ -151,7 +99,6 @@ export default {
       });
     },
 
-<<<<<<< HEAD
     confirmDelete(product) {
       this.productToDelete = product;
       this.showDeleteDialog = true;
@@ -161,32 +108,17 @@ export default {
       try {
         const response = await axios.delete('/api/products/delete/' + this.productToDelete.id);
         if (response.status == 200) {
+          // Add fade-out animation to the product item
           this.productToDelete.deleted = true;
 
-      
+          // assign product as payload for deletion in products list
           this.$store.dispatch('asyncDeleteProduct', this.productToDelete);
 
           setTimeout(() => {
             alert("Product " + this.productToDelete.name + " is deleted");
-          }, 500); 
+          }, 500); // Delay alert to allow time for animation
 
           this.showDeleteDialog = false;
-=======
-    async deleteProduct(product) {
-      try {
-        const response = await axios.delete('/api/products/delete/' + product.id);
-        if (response.status === 200) {
-          // Add fade-out animation to the product item
-          product.deleted = true;
-
-          // assign product as payload for deletion in products list
-          const payload = product;
-          this.$store.dispatch('asyncDeleteProduct', payload);
-
-          setTimeout(() => {
-            alert("Product " + product.name + " is deleted");
-          }, 500); // Delay alert to allow time for animation
->>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
         }
       } catch (error) {
         console.log(error);
@@ -197,13 +129,40 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< HEAD
-.btn {
-  border-radius: 50px;
-  padding: 10px 20px;
-  transition: all 0.3s ease;
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
+.product-item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  position: relative;
+  overflow: hidden; /* Ensure the image doesn't overflow the container */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
+}
+
+.product-item:hover .product-image {
+  transform: scale(1.1); /* Zoom in effect */
+}
 .btn-edit {
   padding: 10px;
   border-radius: 15px;
@@ -238,8 +197,9 @@ export default {
   transform: scale(1.02);
 }
 
-.btn-delete, .btn-cancel {
-  width: 100px; 
+.btn-delete,
+.btn-cancel {
+  width: 100px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -248,7 +208,7 @@ export default {
 }
 
 .btn-delete {
-  padding: 10px;
+    padding: 10px;
      border-radius: 15px;
      box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
      background-color: #ff0000;
@@ -256,10 +216,17 @@ export default {
      color: white;
      cursor: pointer;
      transition: all 0.3s ease; 
-}
+   }
+  
 
-.btn-cancel {
-  padding: 10px;
+  .btn-delete:hover {
+     background: linear-gradient(to bottom, #ff0000, white);
+     color: black;
+     transform: scale(1.02);
+   }
+
+  .btn-cancel {
+    padding: 10px;
      border-radius: 15px;
      box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
      background-color: #6a6767;
@@ -267,19 +234,13 @@ export default {
      color: white;
      cursor: pointer;
      transition: all 0.3s ease; 
-}
+  }
 
-.btn-delete:hover {
-  background: linear-gradient(to bottom, #ff0000, white);
-  color: black;
-  transform: scale(1.02);
-}
-
-.btn-cancel:hover {
-  background: linear-gradient(to bottom, #6a6767, white);
-  color: black;
-  transform: scale(1.02);
-}
+  .btn-cancel:hover {
+     background: linear-gradient(to bottom, #6a6767, white);
+     color: black;
+     transform: scale(1.02);
+  }
 
 .modal-backdrop {
   z-index: 1040;
@@ -323,59 +284,10 @@ export default {
 
 .table-hover tbody tr:hover {
   background-color: rgba(0, 123, 255, 0.15);
-=======
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.product-item {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 5px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 200px;
-  position: relative;
-  overflow: hidden; /* Ensure the image doesn't overflow the container */
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-  max-height: 150px;
-  object-fit: cover;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 1rem;
-  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
-}
-
-.product-item:hover .product-image {
-  transform: scale(1.1); /* Zoom in effect */
-}
-
-.product-details {
-  text-align: center;
-}
-
-.product-actions {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 1rem;
->>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
 }
 
 .fade-out {
   animation: fadeOut 0.5s ease forwards;
-<<<<<<< HEAD
-  transform: translateX(100%);
-=======
->>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
 }
 
 @keyframes fadeOut {
@@ -387,7 +299,5 @@ export default {
   }
 }
 </style>
-<<<<<<< HEAD
 
-=======
->>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
+ 
