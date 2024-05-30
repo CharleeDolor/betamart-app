@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <div class="container-lg d-flex flex-column my-4">
       <div class="m-2">
-        <router-link to="/add" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i> Add Product</router-link>
+        <router-link to="/add" class="btn-add btn-primary"><i class="fa-solid fa-cart-plus"></i> Add Product</router-link>
       </div>
       <h1 class="text-center">Welcome, {{ getAccountDetails.name }}</h1>
 
@@ -163,6 +163,24 @@ export default {
 .product-item:hover .product-image {
   transform: scale(1.1); /* Zoom in effect */
 }
+
+.btn-add{
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: rgba(45, 35, 66, 0.5) 0 2px 4px, rgba(45, 35, 66, 0.5) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+      background-color: #e6b800;
+      border: none;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease; 
+    }
+
+  .btn-add:hover {
+      background: linear-gradient(to bottom, #e6b800, white);
+      color: black;
+      transform: scale(1.02);
+    }
 .btn-edit {
   padding: 10px;
   margin-right: 10px; 
