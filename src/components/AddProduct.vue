@@ -12,7 +12,7 @@
           <form @submit.prevent="addProduct" class="p-3 mt-3">
             <div class="form-field d-flex align-items-center mb-3">
               <span class="fas fa-tag"></span>
-              <input type="text" class="form-control" id="name" v-model="name" placeholder="Enter name" required>
+              <input type="text" class="form-control" id="name" v-model="name" placeholder="Product name" required>
             </div>
   
             <div class="form-field d-flex align-items-center mb-3">

@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavBar></NavBar>
+<<<<<<< HEAD
     <div class="container-lg d-flex flex-column my-4">
       <div class="m-2">
         <router-link to="/add" class="btn btn-primary">Add Product</router-link>
@@ -60,6 +61,41 @@
     </div>
     <div v-if="showDeleteDialog" class="modal-backdrop fade show"></div>
 
+=======
+    <div class="container-lg d-flex flex-column">
+      <br>
+      <div class="m-2">
+        <router-link to="/add" class="btn btn-primary">Add Product</router-link>
+      </div>
+      <h1>Welcome {{ getAccountDetails.name }}</h1>
+
+      <div v-if="getProducts.length < 1">
+        <h3>Seems empty here!</h3>
+      </div>
+      <div class="d-flex align-items-center justify-content-center flex-column" v-else>
+        <h1>My Products</h1>
+
+        <div class="product-list">
+          <div v-for="product in getProducts" :key="product.id" class="product-item">
+            <img :src="require('@/assets/logo-ecommerce.png')" alt="Product Image" class="product-image">
+            <div class="product-details">
+              <h2>{{ product.name }}</h2>
+              <p>Price: {{ product.price }}</p>
+              <p>Stocks: {{ product.stocks }}</p>
+              <div class="product-actions">
+                <button @click="gotoEdit(product.id)" class="btn btn-warning">Edit</button>
+                <button @click="deleteProduct(product)" class="btn btn-danger"
+                  onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+>>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
     <router-view />
   </div>
 </template>
@@ -73,6 +109,7 @@ export default {
     NavBar
   },
 
+<<<<<<< HEAD
   data() {
     return {
       showDeleteDialog: false,
@@ -80,6 +117,8 @@ export default {
     };
   },
 
+=======
+>>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
   async beforeMount() {
     // load user details
     const accountDetails = await axios.get('/api/user');
@@ -112,6 +151,7 @@ export default {
       });
     },
 
+<<<<<<< HEAD
     confirmDelete(product) {
       this.productToDelete = product;
       this.showDeleteDialog = true;
@@ -131,6 +171,22 @@ export default {
           }, 500); 
 
           this.showDeleteDialog = false;
+=======
+    async deleteProduct(product) {
+      try {
+        const response = await axios.delete('/api/products/delete/' + product.id);
+        if (response.status === 200) {
+          // Add fade-out animation to the product item
+          product.deleted = true;
+
+          // assign product as payload for deletion in products list
+          const payload = product;
+          this.$store.dispatch('asyncDeleteProduct', payload);
+
+          setTimeout(() => {
+            alert("Product " + product.name + " is deleted");
+          }, 500); // Delay alert to allow time for animation
+>>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
         }
       } catch (error) {
         console.log(error);
@@ -141,6 +197,7 @@ export default {
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 .btn {
   border-radius: 50px;
   padding: 10px 20px;
@@ -266,11 +323,59 @@ export default {
 
 .table-hover tbody tr:hover {
   background-color: rgba(0, 123, 255, 0.15);
+=======
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.product-item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  position: relative;
+  overflow: hidden; /* Ensure the image doesn't overflow the container */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
+}
+
+.product-item:hover .product-image {
+  transform: scale(1.1); /* Zoom in effect */
+}
+
+.product-details {
+  text-align: center;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1rem;
+>>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
 }
 
 .fade-out {
   animation: fadeOut 0.5s ease forwards;
+<<<<<<< HEAD
   transform: translateX(100%);
+=======
+>>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
 }
 
 @keyframes fadeOut {
@@ -282,4 +387,7 @@ export default {
   }
 }
 </style>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a6d88aa878b6b91d8130cc4dce2bbcc973a5a35c
